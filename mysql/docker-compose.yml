@@ -1,0 +1,23 @@
+version: '3'
+services:
+  pdf-mysql:
+    image: mysql:5.7.22
+    command: --innodb-use-native-aio=0
+    restart: always
+    ports:
+      - "33061:3306"
+    volumes:
+      - "./.docker/dbdata:/var/lib/mysql"
+    environment:
+      MYSQL_DATABASE: pdf
+      MYSQL_ROOT_PASSWORD: root
+      
+  pdf-redis:
+    image: redis:alpine
+    expose:
+      - 6379
+
+networks:
+  default:
+    external:
+      name: services-laravel

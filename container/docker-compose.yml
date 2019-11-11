@@ -1,0 +1,30 @@
+version: '3'
+services:
+  pdfconsumer1:
+    build: .
+    volumes: 
+      - "../consumer:/var/www"
+      - "./consumer/supervisor/conf.d:/etc/supervisor/conf.d"
+
+  pdfconsumer2:
+    build: .
+    volumes: 
+      - "../consumer:/var/www"
+      - "./consumer/supervisor/conf.d:/etc/supervisor/conf.d"
+
+  pdfconsumer3:
+    build: .
+    volumes: 
+      - "../consumer:/var/www"
+      - "./consumer/supervisor/conf.d:/etc/supervisor/conf.d"
+  
+  pdfproducer:
+    build: .
+    volumes: 
+      - "../producer:/var/www"
+      - "./producer/supervisor/conf.d:/etc/supervisor/conf.d"
+    
+networks:
+  default:
+    external:
+      name: services-laravel
